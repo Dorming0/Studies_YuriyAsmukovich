@@ -2,7 +2,7 @@
 {
     public class XmlWorker
     {
-        public void XmlCreate(User user, string xmlName)
+        public static void XmlCreate(User user, string xmlName)
         {
             using (FileStream stream = new FileStream(xmlName, FileMode.Create))
             {

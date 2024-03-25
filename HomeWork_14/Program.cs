@@ -1,6 +1,4 @@
-﻿
-
-using HomeWork_14;
+﻿using HomeWork_14;
 
 string filePath = Console.ReadLine();
 if (string.IsNullOrEmpty(filePath))
@@ -9,9 +7,7 @@ if (string.IsNullOrEmpty(filePath))
 User user = JsonWorker.JsonPars(filePath);
 
 string jsonFileName = $"user_{user.FirstName}_{user.LastName}.json";
-JsonWorker jsonWorker = new JsonWorker();
-jsonWorker.JsonCreate(user, jsonFileName);
+JsonWorker.JsonCreate(user, jsonFileName);
 
 string xmlFileName = $"user_{user.FirstName}_{user.LastName}.xml";
-XmlWorker xmlWorker = new XmlWorker();
-xmlWorker.XmlCreate(user, xmlFileName);
+XmlWorker.XmlCreate(user, xmlFileName);

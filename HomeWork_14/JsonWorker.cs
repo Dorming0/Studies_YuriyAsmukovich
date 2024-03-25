@@ -10,7 +10,7 @@ namespace HomeWork_14
             return JsonSerializer.Deserialize<User>(jsonFile);
         }
 
-        public void JsonCreate(User user, string jsonName)
+        public static void JsonCreate(User user, string jsonName)
         {
             string jsonContent = JsonSerializer.Serialize(user);
             File.WriteAllText(jsonName, jsonContent);
