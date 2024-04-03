@@ -9,7 +9,6 @@ namespace HomeWork_14
             string jsonFile = File.ReadAllText(filePath);
             return JsonSerializer.Deserialize<User>(jsonFile);
         }
-
         public static void JsonCreate(User user, string jsonName)
         {
             string jsonContent = JsonSerializer.Serialize(user);
