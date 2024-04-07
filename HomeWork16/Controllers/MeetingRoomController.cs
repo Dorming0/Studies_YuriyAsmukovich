@@ -32,9 +32,9 @@ namespace HomeWork16.Controllers
 
             _meetingService.CreateRoomSettings(room);
 
-            var json = JsonConvert.SerializeObject(room);
+            //var json = JsonConvert.SerializeObject(room);
 
-            System.IO.File.Create("");
+            //System.IO.File.Create("");
             
             return RedirectToAction("Index");
         }
