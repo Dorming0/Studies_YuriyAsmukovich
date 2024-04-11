@@ -7,13 +7,13 @@ namespace HomeWork16.Models
         public Guid Id { get; set; }
         public string NameRoom { get; set; } = string.Empty;
         public int NumberOfPeople { get; set; }
-        public int PersonAge { get; set; }
+        public uint PersonAge { get; set; }
         public TimeSpan MaxTime { get; set; }
         public MeetingRoomSettings() 
         { 
             Id = Guid.NewGuid();
         }
-        public MeetingRoomSettings(string nameRoom, int numberOfPeople, int personAge, TimeSpan time)
+        public MeetingRoomSettings(string nameRoom, int numberOfPeople, uint personAge, TimeSpan time)
         {
             Id = Guid.NewGuid();
             NameRoom = nameRoom;

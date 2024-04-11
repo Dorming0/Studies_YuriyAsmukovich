@@ -10,7 +10,7 @@ namespace HomeWork16.Models
         public string NameRoom { get; set; } = string.Empty;
         [Range(1, 100, ErrorMessage = "Некорректное значение поля NumberOfPeople")]
         public int NumberOfPeople { get; set; }
-        public int PersonAge { get; set; }
+        public uint PersonAge { get; set; }
         [TimeSpanValidator]
         public TimeSpan MaxTime { get; set; }
         public UpdateMeetingRoomViewModel() { }

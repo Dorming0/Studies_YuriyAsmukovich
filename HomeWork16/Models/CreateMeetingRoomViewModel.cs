@@ -9,12 +9,12 @@ namespace HomeWork16.Models
         public string NameRoom { get; set; } = string.Empty;
         [Range(1,100)]
         public int NumberOfPeople { get; set; }
-        public int PersonAge { get; set; }
+        public uint PersonAge { get; set; }
         public TimeSpan MaxTime { get; set; }
         public CreateMeetingRoomViewModel() { }
        
 
-        public CreateMeetingRoomViewModel(string nameRoom, int numberOfPeople, int personAge, TimeSpan time)
+        public CreateMeetingRoomViewModel(string nameRoom, int numberOfPeople, uint personAge, TimeSpan time)
         {
             Id = Guid.NewGuid();
             NameRoom = nameRoom;
