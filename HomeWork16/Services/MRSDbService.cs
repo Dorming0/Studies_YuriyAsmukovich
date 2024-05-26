@@ -1,27 +1,17 @@
-﻿using Entity.Models;
+﻿using Entity;
+using Entity.Models;
 using HomeWork16.Abstractions;
 using HomeWork16.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace HomeWork16.Services
 {
-    public class MRSService : IMRSService
+    public class MRSDbService : IMRSService
     {
-        private List<MeetingRoomModel> _meetingSettings;
-        public MRSService()
-        {
-            _meetingSettings = new List<MeetingRoomModel>(new[]
-            {
-                new MeetingRoomModel()
-                {
-                    Id = Guid.NewGuid(),
-                    NameRoom = "Lesson",
-                    PersonAge = 15,
-                    NumberOfPeople = 6,
-                    MaxTime = new TimeSpan(13,30, 0)
-                }
-            });
+        private readonly RoomDbContext _roomDbContext;
 
+        public MRSDbService(RoomDbContext roomDbContext)
+        {
+            _roomDbContext = roomDbContext;
         }
 
         public MeetingRoomModel CreateRoomSettings(MeetingRoomModel meetingRoom)
@@ -29,8 +19,8 @@ namespace HomeWork16.Services
             if (meetingRoom == null)
                 throw new ArgumentNullException(nameof(meetingRoom));
 
-            _meetingSettings.Add(meetingRoom);
-
+            _roomDbContext.Add(meetingRoom);
+            _roomDbContext.SaveChanges();
             return meetingRoom;
         }
 
@@ -39,13 +29,18 @@ namespace HomeWork16.Services
             if (meetingRoom == null)
                 throw new ArgumentNullException(nameof(meetingRoom));
 
-            _meetingSettings.RemoveAll(x => x.NameRoom == meetingRoom.NameRoom);
+            var removeRoom = _roomDbContext.Set<MeetingRoomModel>().Find(new object[] { meetingRoom.Id });
 
+            if (removeRoom != null)
+            {
+                _roomDbContext.Entry(removeRoom).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+                _roomDbContext.SaveChanges();
+            }
         }
 
         public IEnumerable<MeetingRoomModel> GetSettings()
         {
-            return _meetingSettings;
+            return _roomDbContext.MeetingRooms.ToList();
         }
 
         public MeetingRoomModel UpdateRoomSettings(MeetingRoomModel meetingRoom)
@@ -53,6 +48,9 @@ namespace HomeWork16.Services
             if (meetingRoom == null)
                 throw new ArgumentNullException(nameof(meetingRoom));
 
+            _roomDbContext.Update(meetingRoom);
+
+            _roomDbContext.SaveChanges();
             return meetingRoom;
         }
     }
