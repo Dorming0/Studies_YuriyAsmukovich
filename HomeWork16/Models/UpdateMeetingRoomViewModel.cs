@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Entity.Models;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 
 namespace HomeWork16.Models
@@ -11,11 +12,11 @@ namespace HomeWork16.Models
         [Range(1, 100, ErrorMessage = "Некорректное значение поля NumberOfPeople")]
         public int NumberOfPeople { get; set; }
         public uint PersonAge { get; set; }
-        [TimeSpanValidator]
+        
         public TimeSpan MaxTime { get; set; }
         public UpdateMeetingRoomViewModel() { }
 
-        public UpdateMeetingRoomViewModel(MeetingRoomSettings meetingRoom) 
+        public UpdateMeetingRoomViewModel(MeetingRoomModel meetingRoom) 
         { 
             NameRoom = meetingRoom.NameRoom;
             NumberOfPeople = meetingRoom.NumberOfPeople;
